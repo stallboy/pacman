@@ -210,7 +210,7 @@ def runTest(testName, moduleDict, printTestCase=False, display=None):
     testDict = testParser.TestParser(testName + ".test").parse()
     solutionDict = testParser.TestParser(testName + ".solution").parse()
     test_out_file = os.path.join('%s.test_output' % testName)
-    testDict['test_out_file'] = test_out_file.replace("\\", '/')
+    testDict['test_out_file'] = test_out_file
     testClass = getattr(projectTestClasses, testDict['class'])
 
     questionClass = getattr(testClasses, 'Question')
@@ -289,7 +289,7 @@ def evaluate(generateSolutions, testRoot, moduleDict, exceptionMap=ERROR_HINT_MA
             testDict = testParser.TestParser(test_file).parse()
             if testDict.get("disabled", "false").lower() == "true":
                 continue
-            testDict['test_out_file'] = test_out_file.replace("\\", '/')
+            testDict['test_out_file'] = test_out_file
             testClass = getattr(projectTestClasses, testDict['class'])
             testCase = testClass(question, testDict)
 

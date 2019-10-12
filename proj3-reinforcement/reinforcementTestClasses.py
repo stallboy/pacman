@@ -268,7 +268,10 @@ class ApproximateQLearningTest(testClasses.TestCase):
         maxPreExperiences = 10
         self.numsExperiencesForDisplay = list(range(min(numExperiences, maxPreExperiences)))
         self.testOutFile = testDict['test_out_file']
-        _, question_name, test_name = testDict['test_out_file'].split('/')
+        if sys.platform == 'win32':
+            _, question_name, test_name = testDict['test_out_file'].split('\\')
+        else:
+            _, question_name, test_name = testDict['test_out_file'].split('/')
         self.experiences = Experiences(test_name.split('.')[0])
         if maxPreExperiences < numExperiences:
             self.numsExperiencesForDisplay.append(numExperiences)
@@ -424,7 +427,10 @@ class QLearningTest(testClasses.TestCase):
         maxPreExperiences = 10
         self.numsExperiencesForDisplay = list(range(min(numExperiences, maxPreExperiences)))
         self.testOutFile = testDict['test_out_file']
-        _, question_name, test_name = testDict['test_out_file'].split('/')
+        if sys.platform == 'win32':
+            _, question_name, test_name = testDict['test_out_file'].split('\\')
+        else:
+            _, question_name, test_name = testDict['test_out_file'].split('/')
         self.experiences = Experiences(test_name.split('.')[0])
         if maxPreExperiences < numExperiences:
             self.numsExperiencesForDisplay.append(numExperiences)
@@ -603,7 +609,10 @@ class EpsilonGreedyTest(testClasses.TestCase):
         self.numExperiences = int(testDict['numExperiences'])
         self.numIterations = int(testDict['iterations'])
         self.opts = {'actionFn': self.env.getPossibleActions, 'epsilon': self.epsilon, 'gamma': self.discount, 'alpha': self.learningRate}
-        _, question_name, test_name = testDict['test_out_file'].split('/')
+        if sys.platform == 'win32':
+            _, question_name, test_name = testDict['test_out_file'].split('\\')
+        else:
+            _, question_name, test_name = testDict['test_out_file'].split('/')
         self.experiences = Experiences(test_name.split('.')[0])
 
     def execute(self, grades, moduleDict, solutionDict):
